@@ -1,0 +1,8 @@
+[
+  {
+    "id": "vps-deploy",
+    "execute-command": "/usr/local/bin/git-deploy-vps.sh",
+    "command-working-directory": "/opt/diynet-stack",
+    "response-message": "vps deploy triggered"
+  }
+]
