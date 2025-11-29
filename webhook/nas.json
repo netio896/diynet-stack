@@ -1,0 +1,8 @@
+[
+  {
+    "id": "nas-deploy",
+    "execute-command": "/usr/local/bin/git-deploy-nas.sh",
+    "command-working-directory": "/opt/diynet-stack",
+    "response-message": "nas deploy triggered"
+  }
+]
