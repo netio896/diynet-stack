@@ -1,2 +1,9 @@
 version: "3.9"
-services: {}
+
+services:
+  diynet-web:
+    image: nginx:alpine
+    container_name: diynet-web-gitops
+    restart: unless-stopped
+    ports:
+      - "8889:80"
