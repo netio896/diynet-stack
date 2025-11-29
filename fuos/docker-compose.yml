@@ -1,2 +1,35 @@
 version: "3.9"
-services: {}
+
+services:
+  halo-db:
+    image: mysql:8.0
+    container_name: halo-db
+    restart: unless-stopped
+    environment:
+      - MYSQL_ROOT_PASSWORD=strong_root_pass
+      - MYSQL_DATABASE=halo
+      - MYSQL_USER=halo
+      - MYSQL_PASSWORD=halo_pass
+    volumes:
+      - /opt/data/halo/mysql:/var/lib/mysql
+    networks:
+      - halo-net
+
+  halo:
+    image: halohub/halo:latest
+    container_name: halo
+    restart: unless-stopped
+    depends_on:
+      - halo-db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://halo-db:3306/halo
+      - SPRING_DATASOURCE_USERNAME=halo
+      - SPRING_DATASOURCE_PASSWORD=halo_pass
+    ports:
+      - "8990:8090"
+    networks:
+      - halo-net
+
+networks:
+  halo-net:
+    driver: bridge
